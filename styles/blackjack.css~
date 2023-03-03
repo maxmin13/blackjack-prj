@@ -1,0 +1,50 @@
+
+h3 {
+	display: inline;
+	padding-right: 40px;
+}
+
+div#main {
+	position: relative;
+}
+
+div#table {
+	clear: both;
+	position: relative;	
+	height: 600px;
+	width: 800px;
+	background-image:url(../images/blackjack/table.jpg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 0;
+}
+
+div#dealer{
+	clear:both;
+	position:absolute;
+	top: 10px;
+	left: 200px;
+	height: 90px;
+	width: 400px;
+	display: flex;
+  	justify-content: center;
+  	border: 1px solid gray;
+}
+
+img.button {
+	float: left;
+	height: 100px;
+}
+
+img.card {
+	width: 60px;
+	height: 90px;
+	
+}
+
+.win {
+	color:green;
+}
+.lose {
+	color:red;
+}

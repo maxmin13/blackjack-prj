@@ -1,0 +1,164 @@
+body {
+	margin: 0px;
+}
+
+h3 {
+	display: inline;
+}
+
+div#main {
+	position: relative;
+	width: 800px;
+	height: 900px;
+	border: 0px solid red;
+}
+
+div#title {
+	position: relative;
+	height: 140px;
+	border: 1px solid grey;
+}
+
+div#title h1 {
+	position: relative;
+	top: -100px;
+	left: 150px;
+	color: red;
+	font-family: Sans-serif;
+}
+
+div#shoe {
+	/*float: right;*/
+	position: relative;
+	top: 0px;
+	left: 600px;
+	display: inline-block;
+	border: 2px solid yellow;
+}
+
+img#deck {	
+	width: 100px;
+	height: 130px;
+}
+
+div#messages {
+	position: relative;
+	height: 50px;
+	width: 800px;
+	border: 0px solid blue;
+}
+
+div#table {
+	position: relative;	
+	height: 600px;
+	width: 800px;
+	background-image:url(../images/blackjack/table.jpg);
+	background-color: #007940;
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 0;
+	border: 1px solid yellow;
+}
+
+div#dealer{
+	position:absolute;
+	top: 10px;
+	left: 200px;
+	height: 90px;
+	width: 400px;
+	display: flex;
+  	justify-content: center;
+  	border: 1px solid yellow;
+}
+
+div#dealerStatus{
+	position:absolute;
+	top: 100px;
+	left: 200px;
+	height: 10px;
+	width: 400px;
+	display: flex;
+  	justify-content: center;
+  	border: 0px solid yellow;
+}
+
+p.name, p.playerStatus, p.dealerStatus {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	z-index: 1;
+}
+
+div.seat {
+	z-index: 1;
+	width: 75px;
+	height: 100px;
+	border: 1px solid yellow;
+}
+
+div#seat1 {
+	position:absolute; 
+	top: 275px;
+	left: 45px;
+}
+
+div#seat2 {
+	position:absolute; 
+	top: 310px;
+	left: 148px;
+}
+
+div#seat3 {
+	position:absolute; 
+	top: 330px;
+	left: 253px;
+}
+
+div#seat4 {
+	position:absolute; 
+	top: 337px;
+	left: 361px;
+}
+
+div#seat5 {
+	position:absolute; 
+	top: 330px;
+	left: 471px;
+}
+
+div#seat6 {
+	position:absolute; 
+	top: 310px;
+	left: 577px;
+}
+
+div#seat7 {
+	position:absolute; 
+	top: 275px;
+	left: 677px;
+}
+
+img.button {
+	float: left;
+	height: 100px;
+}
+
+img.card {
+	width: 60px;
+	height: 90px;
+	z-index: 1;
+}
+
+div#controls {
+	position: relative;
+	height: 100px;
+	width: 800px;
+	border: 0px solid grey;
+}
+
+.visible {
+	opacity: 1;
+}
+.invisible {
+	opacity: 0;
+}

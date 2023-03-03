@@ -1,0 +1,86 @@
+body {
+	background-color:#000000;
+}
+
+p {
+	color:#33FF66;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+img#text_top {
+	position:relative;
+	z-index: 4;
+}
+
+div#top {
+	position:absolute;
+	left:191px;
+	top:15px;
+	z-index: 4;
+}
+
+div#container {
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index: 0;
+}
+
+img.lightning {
+	display:none;
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index: 0;
+}
+
+div#frame {
+	position:relative;
+	left:100px;
+	top:100px;
+	width:545px;
+	height:629px;
+	background-image:url(../images/frame.png);
+	z-index: 3;
+	overflow: hidden;
+}
+
+div#pic_box {
+	position:relative; 
+	left:91px; 
+	top:84px; 
+	width:367px; 
+	height:460px; 
+	z-index: 2;
+	overflow: hidden;
+}
+
+div.face{
+	position:relative;
+	left:0px;
+	top:0px;	
+	z-index: 1;
+}
+
+div#head {
+	height:72px;
+}
+
+div#eyes {
+	height:79px; 
+}
+
+div#nose {
+	height:86px; 
+}
+
+div#mouth {
+	height:117px; 
+}
+
+div#toolbar {
+	position:relative; 
+	left:100px;
+	top:120px;
+}
