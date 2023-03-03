@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<meta charset='utf-8'>
+		<title>Black Jack</title> 
+		<link href='styles/blackjack.css' rel='stylesheet'>
+	</head> 
+	<body>
+		<div id='main'>
+			<div id='title'>
+				<div id='shoe'><img id='deck' src='images/blackjack/deck_small.jpg' alt='deck of cards'></div>
+				<h1>Hot Casino</h1>
+			</div>
+			<div id='messages'>
+				<h3 id='hdrTotal'>&nbsp;</h3><h3 id='hdrResult'>&nbsp;</h3>
+			</div>
+			
+			<div id='table'>
+				<div id='dealer'></div>
+				<div id='dealerStatus'></div>
+				<div id='seat1' class='seat'></div>
+				<div id='seat2' class='seat'></div>
+				<div id='seat3' class='seat'></div>
+				<div id='seat4' class='seat'></div>
+				<div id='seat5' class='seat'></div>
+				<div id='seat6' class='seat'></div>
+				<div id='seat7' class='seat'></div>
+			</div>
+			<div id='tableExt'></div>
+
+			<div id='controls'>
+				<div id='btnHit'>
+					<img src='images/blackjack/deck_small.jpg' class='button' alt='draw a card'>
+				</div>
+				<div id='btnStick'>
+					<img src='images/blackjack/stick_small.jpg' class='button' alt='stay'>
+				</div>
+				<div id='btnStart'>
+					<img src='images/blackjack/start.jpg' class='button' alt='start the play'>
+				</div>
+			</div>
+		</div>
+		
+		<script src='scripts/blackjack/lib/jquery-3.6.1.js'></script>
+		<script type='module' src='scripts/blackjack/run.js'></script>
+	</body>
+</html>
