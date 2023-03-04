@@ -1,6 +1,7 @@
 
 
-1) client: check if there are player sit before starting
+////////////  https://activemq.apache.org/ajax.html
+//////////// https://betterprogramming.pub/secure-a-spring-boot-rest-api-with-json-web-token-reference-to-angular-integration-e57a25806c50
 
-2) remove highligthing around seats and dealer, make a seat blick when winner
+
 

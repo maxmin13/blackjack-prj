@@ -8,6 +8,7 @@ import {Player} from '../common/player.js';
 import {PlayStatus} from '../common/playstatus.js';
 import {GamblerStatus} from '../common/gamblerstatus.js';
 import {ClientConstants} from './clientconstants.js';
+import {Constants} from '../common/constants.js';
 	
 export class Table {
 
@@ -25,7 +26,6 @@ export class Table {
 		var players = play.players;
 		var dealer = play.dealer;
 		var card = null;
-		var counter = 0, delay = 0;	
 		if (play.status === PlayStatus.END) {
 			card = dealer.hand.cards[0];
 			Table.__displayDealerFirstCard(card);
@@ -35,29 +35,28 @@ export class Table {
 		var promise = null;
 		
 		do {
-			if (promise != null) {
-				await promise;
-			}
-
 			moreCards = false;	
 			// the players.
 			for (var i = players.length -1; i >= 0; i--) {	
 				var player = players[i];
 				if (player.hasCardsToDeal()) {
-					delay = ++counter * ClientConstants.CardsShuffleTime;	
-					promise = Table.__displayPlayerCard(player, delay);
+					if (promise != null) {
+						await promise;
+					}		
+					promise = Table.__displayPlayerCard(player, ClientConstants.CardsShuffleTime);
 					moreCards = true;
 				}				
 			}
 			// the dealer.
 			if (dealer.hasCardsToDeal()) {
-				delay = ++counter * ClientConstants.CardsShuffleTime;	
-				promise = Table.__displayDealerCard(dealer, delay);
+				if (promise != null) {
+					await promise;
+				}
+				promise = Table.__displayDealerCard(dealer, ClientConstants.CardsShuffleTime);
 				moreCards = true;
 			}
 		}
 		while(moreCards);
-		
 		return promise; // return the last promise, all the others have resolved.
 	}
 	
@@ -69,11 +68,10 @@ export class Table {
 		// get the position to which to slide the card.
 		var $seat  = $('div#seat' + player.seat.position);
 		var seatPosition = $seat.offset();
-		
 		var dLeft = seatPosition.left - shoePosition.left -14; 
 		var dTop =  seatPosition.top - shoePosition.top -14;
-
 		var cards = player.hand.cards;
+		
 		for (var i = 0; i < cards.length; i++) {
 			var card = cards[i]; 
 			if(card.dealt == false) { // get the first non dealt card.	
@@ -182,23 +180,38 @@ export class Table {
 		var players = play.players;
 		for(var i=0;i<players.length;i++) {
 			var player = players[i];
-			if (player.status !== GamblerStatus.PLAYING && player.status !== GamblerStatus.LOOSER) {
+			if (player.status !== GamblerStatus.PLAYING &&  player.status !== GamblerStatus.LOOSER) {
 				Table.__displayPlayerStatus(player);
+			}
+			if (player.status === GamblerStatus.WINNER) {
+				Table.__blinkSeat(player.seat);		
 			}
 		}
 	}
-	
+		
 	static __displayPlayerStatus(player) {	
 		var $seat = $('div#seat' + player.seat.position);
 		// count the images already appended to the seat.
 		var cards =  player.hand.cards.length;
 		var seatPosition = new Position(7, 20 * cards + 100);
-		if (player.status !== GamblerStatus.PLAYING) {
-			$("p[id='" + player.userId + player.seat.position + "']").remove();
-			var $p = $('<p class="playerStatus">').attr('id', player.userId + player.seat.position).text(player.status.toLowerCase());
-			$p.attr('style', 'position: absolute; left: ' + (seatPosition.left) + 'px; top: ' + (seatPosition.top) + 'px;');
-			$p.appendTo($seat);
+		
+		$("p[id='" + player.userId + player.seat.position + "']").remove();
+		var $p = $('<p class="playerStatus">').attr('id', player.userId + player.seat.position).text(player.status.toLowerCase());
+		$p.attr('style', 'position: absolute; left: ' + (seatPosition.left) + 'px; top: ' + (seatPosition.top) + 'px;');
+		$p.appendTo($seat);
+	}
+	
+	static __blinkSeat(seat) {
+		var $seat  = $('div#seat' + seat.position);
+		for (var i = 0; i < 5; i++) {
+			$seat.css({border: '1px solid yellow'})
+				.animate({borderWidth: 0}, 100)
+				.delay(300)
+				.animate({borderWidth: 1}, 100)
+				.delay(300);
 		}
+		$seat.css({border: '0px solid yellow'})
+			.animate({borderWidth: 0}, 100);
 	}
 	
 	static __buildCardElement(card, name) {

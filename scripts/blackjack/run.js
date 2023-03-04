@@ -11,10 +11,6 @@ import {ClientConstants} from './client/clientconstants.js';
 import {Constants} from './common/constants.js';
 import {Card} from './common/card.js';
 
-
-////////////  https://activemq.apache.org/ajax.html
-//////////// https://betterprogramming.pub/secure-a-spring-boot-rest-api-with-json-web-token-reference-to-angular-integration-e57a25806c50
-
 $(document).ready(function() {
 
 	Utils.debug('ready');
@@ -23,22 +19,28 @@ $(document).ready(function() {
 	const userId = 'maxmin';
 	const client = new ClientCasino(userId);
 	const table = new Table();
-	
+
 	$('div#btnHit').toggle();   // hide
 	$('div#btnStick').toggle(); // hide
 		
-	//$(document).on('click', 'div#btnStart', function(e) {
 	$('div#btnStart').bind('click', function(e) {
 		e.stopPropagation();
-		
 		Table.clearTable();
+		
+		if (client.getPlayers().length === 0) {
+			Utils.debug('No players sit at the table.');
+			Table.showMessage('Take a seat!');
+			return;		
+		}
+		
 		client.startPlay();
 		
 		$('div#btnStart').toggle(); // hide
 		
 		setTimeout(function() { 
+			// After a while trigger the end of the play. Configure the timers to let the players the time to draw the cards.
 			Utils.debug('Finalizing  ...');
-			client.server.finalizePlay();
+			client.finalizePlay();
 			Utils.debug('Play ended!');	
 			
 			$('div#btnHit').toggle();   // hide

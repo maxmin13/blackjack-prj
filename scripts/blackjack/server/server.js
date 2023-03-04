@@ -22,6 +22,10 @@ export class Server {
 		this._players.push(player);
 	}
 	
+	getPlayers() {
+		return this._players;
+	}
+	
 	startPlay() {
 		if (this.play !== null && this.play.status !== PlayStatus.END) {
 			Utils.debug('SERVER: Play already started.');
@@ -34,7 +38,6 @@ export class Server {
 		
 		// check if the shoe has enough cards left.
 		this.deck.checkDeck();
-		
 		this._dealer.reset();
 		this.dealerHiddenCard = null;
 		
@@ -46,9 +49,7 @@ export class Server {
 		}
 		
 		this.play = new Play(this._players, this._dealer);
-		
 		Utils.debug('SERVER: Starting play ...');
-
 		this.play.status = PlayStatus.DEALING;
 				
 		// Two rounds of cards to the dealer and the players.
@@ -75,9 +76,7 @@ export class Server {
 		
 		Utils.debug('SERVER: Play started.');
 		Utils.debug('SERVER: The players can draw a card.');
-		
 		this.play.status = PlayStatus.HITTING;
-		
 		Utils.debug(this.play);
 			
 		return this.play;

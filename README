@@ -12,3 +12,11 @@ Start playing at:
 
 http://localhost:8000/blackjack.html
 
+
+## Libraries:
+
+jquery 3.6.1
+
+jquery UI 1.13.1
+
+qunit 2.19.4

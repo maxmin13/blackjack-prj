@@ -3,7 +3,7 @@
 export class Seat {
 
 	constructor(position) {
-		this.position = position;
+		this.position = position; // int
 		this._taken = false;
 	}
 	

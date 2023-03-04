@@ -28,6 +28,10 @@ export class ClientCasino {
 	sendPlayer(player) {
 		this._server.addPlayer(player);
 	}
+	
+	getPlayers() {
+		return this._server.getPlayers();
+	}
 		
 	startPlay() {
 		this._play = this._server.startPlay();
@@ -53,6 +57,10 @@ export class ClientCasino {
 				this._server.stickPlayer(player);
 			}			
 		}
+	}
+	
+	finalizePlay() {
+		this._server.finalizePlay();
 	}
 	
 	// get the first PLAYING player in play.
